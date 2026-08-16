@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vineeth Mannukandy</title>
+  <meta name="description" content="Profile, career journey and survey — Vineeth Mannukandy" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="bg-glow"></div>
+
+  <header class="nav">
+    <div class="container nav__inner">
+      <a href="#top" class="nav__brand">VM<span class="dot">.</span></a>
+      <nav class="nav__links">
+        <a href="#about">About</a>
+        <a href="#career">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#survey">Survey</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero container">
+      <div class="hero__text">
+        <p class="eyebrow">Hello, I'm</p>
+        <h1>Vineeth Mannukandy</h1>
+        <p class="hero__role">Software Engineer &mdash; <span class="typed" id="typed"></span></p>
+        <p class="hero__desc">
+          I build reliable software and enjoy sharing my career journey.
+          Explore my profile and experience below.
+        </p>
+        <div class="hero__cta">
+          <a href="#career" class="btn btn--primary">Experience</a>
+        </div>
+        <div class="hero__social">
+          <a href="https://github.com/vineethmannukandy" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a>
+          <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn">https://in.linkedin.com/in/vineeth-mannukandy-9a237a154</a>
+          <a href="mailto:vinithm@gmail.com" aria-label="Email">Email</a>
+        </div>
+      </div>
+      <div class="hero__avatar">
+        <div class="avatar-ring">
+          <div class="avatar-circle">VM</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section container">
+      <h2 class="section__title"><span class="num">01.</span> About Me</h2>
+      <div class="about__grid">
+        <div class="about__text">
+          <p>
+            I'm a passionate software engineer with hands-on experience across the full stack.
+            I love solving problems, learning new technologies, and building things that matter.
+            <em>Edit this paragraph in <code>index.html</code> with your own bio.</em>
+          </p>
+          <p>
+            Outside of work, I enjoy exploring new tools, contributing to side projects,
+            and continuously growing my craft.
+          </p>
+        </div>
+        <ul class="about__facts">
+          <li><strong>Location</strong><span>India</span></li>
+          <li><strong>Experience</strong><span>X+ years</span></li>
+          <li><strong>Focus</strong><span>Full-Stack Development</span></li>
+          <li><strong>Open to</strong><span>Freelance / Full-time</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CAREER TIMELINE -->
+    <section id="career" class="section container">
+      <h2 class="section__title"><span class="num">02.</span> Experience</h2>
+      <p class="section__subtitle">A quick look at my journey so far.</p>
+      <div class="timeline" id="timeline"><!-- populated by js/data.js + js/main.js --></div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section container">
+      <h2 class="section__title"><span class="num">03.</span> Skills</h2>
+      <div class="skills" id="skills-list"><!-- populated by js/data.js + js/main.js --></div>
+    </section>
+
+    <!-- SURVEY -->
+    <section id="survey" class="section container">
+      <h2 class="section__title"><span class="num">04.</span> Quick Survey</h2>
+      <p class="section__subtitle">Visited my profile? Share your feedback — it only takes a minute.</p>
+
+      <form id="surveyForm" class="survey-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Jane Doe" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="jane@example.com" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="role">You are a...</label>
+          <select id="role" name="role" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="Recruiter">Recruiter</option>
+            <option value="Hiring Manager">Hiring Manager</option>
+            <option value="Peer / Colleague">Peer / Colleague</option>
+            <option value="Friend / Family">Friend / Family</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>How would you rate this profile?</label>
+          <div class="rating" id="rating" data-value="0">
+            <button type="button" class="star" data-star="1" aria-label="1 star">&#9733;</button>
+            <button type="button" class="star" data-star="2" aria-label="2 stars">&#9733;</button>
+            <button type="button" class="star" data-star="3" aria-label="3 stars">&#9733;</button>
+            <button type="button" class="star" data-star="4" aria-label="4 stars">&#9733;</button>
+            <button type="button" class="star" data-star="5" aria-label="5 stars">&#9733;</button>
+          </div>
+          <input type="hidden" id="ratingValue" name="rating" value="0" />
+        </div>
+
+        <div class="form-group">
+          <label for="message">Feedback / Comments</label>
+          <textarea id="message" name="message" rows="4" placeholder="Share your thoughts..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn--primary" id="submitBtn">Submit Survey</button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section container">
+      <h2 class="section__title"><span class="num">05.</span> Get In Touch</h2>
+      <p class="section__subtitle">Have an opportunity or just want to connect? Reach out.</p>
+      <div class="contact__links">
+        <a href="mailto:you@example.com" class="btn btn--primary">Email Me</a>
+        <a href="https://github.com/vineethmannukandy" target="_blank" rel="noopener" class="btn btn--ghost">GitHub</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; <span id="year"></span> Vineeth Mannukandy. Built with plain HTML, CSS &amp; JS.</p>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
