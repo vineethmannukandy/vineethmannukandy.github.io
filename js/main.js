@@ -56,6 +56,18 @@ document.querySelectorAll(".nav__links a").forEach((link) => {
         <div class="timeline__tags">
           ${item.tags.map((t) => `<span>${escapeHtml(t)}</span>`).join("")}
         </div>` : ""}
+      ${item.projects && item.projects.length ? `
+        <div class="timeline__projects">
+          ${item.projects.map((p) => `
+            <div class="timeline__project">
+              <div class="timeline__project-head">
+                <strong>${escapeHtml(p.title)}</strong>
+                <span>${escapeHtml(p.period)}</span>
+              </div>
+              <p>${escapeHtml(p.description)}</p>
+            </div>
+          `).join("")}
+        </div>` : ""}
     </div>
   `).join("");
 })();
@@ -87,90 +99,6 @@ document.querySelectorAll(".nav__links a").forEach((link) => {
     });
   }, { threshold: 0.4 });
   bars.forEach((bar) => observer.observe(bar));
-})();
-
-/* ---------- Star rating ---------- */
-(function starRating() {
-  const rating = document.getElementById("rating");
-  const ratingValue = document.getElementById("ratingValue");
-  if (!rating) return;
-
-  const stars = Array.from(rating.querySelectorAll(".star"));
-
-  function setStars(value) {
-    stars.forEach((star) => {
-      star.classList.toggle("active", Number(star.dataset.star) <= value);
-    });
-  }
-
-  stars.forEach((star) => {
-    star.addEventListener("click", () => {
-      const value = Number(star.dataset.star);
-      rating.dataset.value = value;
-      ratingValue.value = value;
-      setStars(value);
-    });
-  });
-})();
-
-/* ---------- Survey form submission ---------- */
-(function surveyForm() {
-  const form = document.getElementById("surveyForm");
-  const status = document.getElementById("formStatus");
-  const submitBtn = document.getElementById("submitBtn");
-  if (!form) return;
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    status.textContent = "";
-    status.className = "form-status";
-
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-
-    const payload = {
-      name: form.name.value.trim(),
-      email: form.email.value.trim(),
-      role: form.role.value,
-      rating: form.rating.value,
-      message: form.message.value.trim(),
-      submittedAt: new Date().toISOString(),
-      page: window.location.href
-    };
-
-    const endpoint = typeof SURVEY_ENDPOINT_URL !== "undefined" ? SURVEY_ENDPOINT_URL : "";
-    if (!endpoint || endpoint.includes("PASTE_YOUR_GOOGLE_APPS_SCRIPT")) {
-      status.textContent = "Survey storage isn't configured yet — see apps-script/README.md to connect Google Sheets.";
-      status.classList.add("error");
-      return;
-    }
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Submitting...";
-
-    try {
-      await fetch(endpoint, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify(payload)
-      });
-
-      status.textContent = "Thanks! Your response has been recorded.";
-      status.classList.add("success");
-      form.reset();
-      document.querySelectorAll(".rating .star").forEach((s) => s.classList.remove("active"));
-      document.getElementById("ratingValue").value = "0";
-    } catch (err) {
-      status.textContent = "Something went wrong. Please try again later.";
-      status.classList.add("error");
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Submit Survey";
-    }
-  });
 })();
 
 /* ---------- Utils ---------- */
